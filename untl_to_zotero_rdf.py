@@ -1,11 +1,11 @@
+#!/usr/bin/env python
+
 """Convert UNTL metadata into Zotero RDF format.
 
 Downloads UNTL metadata for a UNT Digital Library collection and
 produces a Zotero RDF file for import into Zotero.
 """
 
-
-#!/usr/bin/env python
 
 import argparse
 import os
@@ -192,7 +192,7 @@ class ZoteroPresentation(ZoteroItem):
         creators = self.untl_data.get('creator', [])
         for creator in creators:
             if creator.get('content', {}).get('type', '') == 'per':
-                name = creator.get('content', {}).get('name', '') 
+                name = creator.get('content', {}).get('name', '')
                 if name:
                     name_parts = name.split(',', 1)
                     surname = name_parts[0].strip()
@@ -200,7 +200,7 @@ class ZoteroPresentation(ZoteroItem):
                     if len(name_parts) == 2:
                         given_name = name_parts[1].strip()
                     presenters.append({'surname': surname,  'given_name': given_name})
-        return(presenters)
+        return presenters
 
     def get_meeting_name_locality(self):
         """Parse meeting name and locality from publication info."""
@@ -211,13 +211,13 @@ class ZoteroPresentation(ZoteroItem):
             if source.get('qualifier', '') == 'conference':
                 conference_info = source.get('content', '')
                 if conference_info:
-                     # Try and parse the info into a meeting name ending in a date,
-                     #  and a locality if present.
-                     info_match = MEETING_PATTERN.search(conference_info)
-                     if info_match:
-                         meeting = info_match.group('meeting')
-                         if info_match.group('locality') is not None:
-                             locality = info_match.group('locality').rstrip('.')
+                    # Try and parse the info into a meeting name ending in a date,
+                    #  and a locality if present.
+                    info_match = MEETING_PATTERN.search(conference_info)
+                    if info_match:
+                        meeting = info_match.group('meeting')
+                        if info_match.group('locality') is not None:
+                            locality = info_match.group('locality').rstrip('.')
         return meeting, locality
 
     def get_relations(self):
@@ -270,7 +270,7 @@ def main():
                         help='Use previously retrieved XML for your collection'
                              ' (helpful for dev/testing purposes)',
                         action='store_true')
-    args =  parser.parse_args()
+    args = parser.parse_args()
 
     if not os.path.isfile('cached_untl_metadata.xml') or not args.cache:
         # Pull live metadata if not using cached version
