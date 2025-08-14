@@ -1,0 +1,12 @@
+*.pyc
+*.swp
+*.swo
+*.egg
+*.egg-info
+.cache/
+build/
+dist/
+**/.pytest_cache/
+env/
+.venv/
+.python-version
