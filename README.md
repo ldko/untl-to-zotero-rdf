@@ -18,13 +18,14 @@ Installation
 ```bash
 git clone https://github.com/ldko/untl-to-zotero-rdf.git
 cd untl-to-zotero-rdf
-python -m venv env
+python -m venv env && source env/bin/activate
 pip install -r requirements.txt
 ```
 
 
 Usage
 -----
+```
 untl_to_zotero_rdf.py [-h] [-o OUTPUT] [-y YEAR] [--cache] collection
 
 Convert UNTL metadata into Zotero RDF format.
@@ -41,11 +42,12 @@ optional arguments:
                         Output file where Zotero RDF should be written
   -y YEAR, --year YEAR  Limits items included in the Zotero RDF output to those accessioned in the given year
   --cache               Use previously retrieved XML for your collection (helpful for dev/testing purposes)
+```
 
 Examples
 --------
-To run the script, ensure you are in the untl-to-zotero-rdf directory and
-activate the virtual environment created during installation:
+To run the script, ensure you are in the untl-to-zotero-rdf directory and,
+if needed, activate the virtual environment created during installation:
 
 ```bash
 source env/bin/activate
